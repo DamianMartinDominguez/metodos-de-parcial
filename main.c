@@ -1,4 +1,4 @@
-// ////////////////////////////////////////////////    ejemplo de pila   /////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////    ejemplo de cola  /////////////////////////////////////////////////////////////////////////////////////
 
 /* existe un archivo binario "paciente.dat" secuencial con la siguiente estructura: 
 int id;
@@ -100,7 +100,7 @@ fclose(fp);
 }
 
 
-//  /////////////////////////////////////////////////////////////ejemplo de cola///////////////////////////////////////////////////////////////
+//  /////////////////////////////////////////////////////////////ejemplo de pila///////////////////////////////////////////////////////////////
 
 
 /* parcial de romero 
@@ -196,6 +196,18 @@ void crearPila (struct pila **l)
 
 
 ////////////////////////////////////////////////////  ejemplo de lista /////////////////////////////////////////////////////////////////////
+
+/*
+1) Existe un archivo binario, “cliente.dat”, secuencial con la siguiente estructura:
+int id, char n[30] , unsigned int tipo, int b(baja lógica b=0), que son los datos de un cliente,
+donde cada bit del campo tipo representa alguna situación del cliente: el bit 5 en 1 significa que no tiene crédito
+y el bit 4 en 1 que es deudor, etc.
+ Crear una función que arme una pila con los registros que no sean deudores verificando que estén activos.
+Realizar el main() con la llamada a dicha función y crear un archivo con los datos de la pila. No utilizar variables Globales
+Enviar a Gustavo Viard: gviard_electronica@yahoo.com.ar
+*/
+
+
 
 
 #include <stdio.h>
