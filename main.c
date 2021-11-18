@@ -100,3 +100,100 @@ fclose(fp);
 }
 
 
+//  /////////////////////////////////////////////////////////////ejemplo de cola///////////////////////////////////////////////////////////////
+
+
+/* parcial de romero 
+Legajo: 110009		Apellido y nombre: Romero, Luis 	Email: lromero4598@gmail.com
+Teoría:
+1- Si bien ambas son estructuras referenciadas, la diferencia es que la cola 
+es un tipo de estructura en el que el primer dato que entra es también el primero 
+en salir. En cambio una lista es una estructura con un cierto criterio de orden,
+en el que puedo atender el dato que precise.
+2-CREATE: crea nuevas tablas.
+ALTER: modifica las tablas agregando o cambiando la definicion de los campos
+DROP: elimina tablas.
+TRUNCATE: elimina todos los registros de la tabla.
+COMMENT: agrega comentarios al diccionario de datos.
+RENAME: renombra objetos
+Práctica:
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct datos{
+
+        int id;
+        char n[30];
+        unsigned int tipo;
+        int b;
+
+    };
+
+    struct pila{
+        struct datos d;
+        struct pila *l;
+    };
+
+    struct pila *p=NULL, *aux, *r;
+
+void crearPila (struct pila **l);
+
+int main()
+{
+    FILE *pf;
+
+    crearPila(&p);
+
+    if((pf=fopen("activos.dat","wb"))==NULL)
+        {
+            printf("no se puede abrir el archivo");
+            return ;
+        }
+
+   while(p)
+   {
+       aux=p;
+       fwrite(&p,sizeof(struct datos),1,pf);
+       p=p->l;
+       free(aux);
+   }
+
+   fclose(pf);
+}
+
+void crearPila (struct pila **l)
+{
+    struct pila *aux;
+    struct datos bf;
+    FILE *fp;
+
+    if((fp=fopen("clientes.dat","rb"))==NULL)
+        {
+            printf("no se puede abrir el archivo");
+            return ;
+        }
+
+    fread(&bf,sizeof(struct datos),1,fp);
+    while(!feof(fp))
+    {
+        if(bf.b!=0 && !(bf.tipo & 0x10))
+        {
+            aux=(struct pila *) malloc (sizeof(struct pila));
+            aux->d=bf;
+            aux->l=p;
+            p=aux;
+        }
+    }
+    fclose(fp);
+}
+
+
+//------------Fin del Parcial------------
+
+//Romero, Luis.
+
+
+////////////////////////////////////////////////////  ejemplo de lista /////////////////////////////////////////////////////////////////////
+
